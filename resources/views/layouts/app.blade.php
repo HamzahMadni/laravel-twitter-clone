@@ -32,7 +32,7 @@
                 
                 @guest
                     <li>
-                        <a href="" class="p-3">Login</a>
+                        <a href="{{ route('login')}}" class="p-3">Login</a>
                     </li>
                     <li>
                         <a href="{{ route('register')}}" class="p-3">Register</a>
