@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="class flex justify-center">
-        <div class="w-8/12 bg-white p-6 rounded-lg">
+    <div class="flex flex-col justify-center items-center px-2 sm:px-0 gap-8 mx-auto container w-full">
+
+        <div class="w-full sm:w-8/12 bg-white p-6 rounded-lg">
             @auth
-                <form action="{{ route('posts') }}" method="post" class="mb-4">
+                <form action="{{ route('posts') }}" method="post" class="">
                     @csrf
                     <div class="mb-4">
                         <label for="body" class="sr-only">Body</label>
@@ -18,11 +19,13 @@
                     </div>
 
                     <div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Post</button>
+                        <button type="submit" class="bg-teal-800 text-white px-4 py-2 rounded font-medium w-full sm:w-fit">Post</button>
                     </div>
                 </form>
             @endauth
+        </div>
 
+        <div class="w-full sm:w-8/12 bg-white p-6 rounded-lg">
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <x-post :post="$post" />

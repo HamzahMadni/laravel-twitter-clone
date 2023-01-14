@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @vite('resources/css/app.css')
-        <title>Posty</title>
+        <title>Twitter Clone</title>
     </head>
-    <body class="bg-gray-200">
-        <nav class="p-6 bg-white flex justify-between mb-6">
+    <body class="bg-teal-700">
+        <nav class="p-6 bg-teal-900 flex justify-between mb-6 text-white">
             <ul class="flex items-center">
                 <li>
                     <a href="/" class="p-3">Home</a>
