@@ -11,14 +11,6 @@ class PostController extends Controller
     {
         $this->middleware(['auth'])->only(['store', 'destroy']);
     }
-    public function index()
-    {
-        $posts = Post::whereIn('user_id', auth()->user()->following->pluck('id'))->latest()->with(['user', 'likes'])->paginate(20);
-
-        return view('posts.index', [
-            'posts' => $posts
-        ]);
-    }
 
     public function show(Post $post)
     {

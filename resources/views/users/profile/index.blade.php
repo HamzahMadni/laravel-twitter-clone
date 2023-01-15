@@ -8,27 +8,7 @@
                     <h1 class="text-2xl font-medium mb-1">{{ $user->name }}</h1>
                     <p>Posted {{ $posts->count() }} {{ Str::plural('post', $posts->count()) }} and recieved {{ $user->recievedLikes->count() }} likes</p>
                 </div>
-                @auth
-                    @if (
-                        auth()->id() !== $user->id
-                        && $follow = \App\Models\Follow::query()
-                            ->where('follower_user_id', auth()->id())
-                            ->where('followed_user_id', $user->id)
-                            ->first()
-                            ?->id
-                    )
-                        <form action="{{ route('users.follows.destroy', ['user' => $user, 'follow' => $follow]) }}" method="post">
-                            @csrf
-                            <input type="hidden" name="_method" value="delete">
-                            <button class="bg-teal-900 py-1 px-3 rounded hover:bg-teal-800" type="submit">Unfollow</button>
-                        </form>
-                    @else
-                        <form action="{{ route('users.follows.store', $user, ) }}" method="post">
-                            @csrf
-                            <button class="bg-teal-900 py-1 px-3 rounded hover:bg-teal-800" type="submit">Follow</button>
-                        </form>
-                    @endif           
-                @endauth
+                <x-follow-button :user="$user" />
             </div>
 
 
@@ -81,32 +61,39 @@
 
                     {{ $posts->links() }}
                 @else
-                    <p>{{ $user->name }} does not have any posts.</p>
+                    <p class="text-center py-8">{{ $user->name }} does not have any posts.</p>
                 @endif
             </div>
             <div class="bg-white p-6 rounded-b-lg space-y-4 hidden" id="followersContainer">
                 @if ($followers->count())
                     @foreach ($followers as $follower)
-                    <div class="flex justify-between items-center bg-gray-200 rounded-lg p-4">
-                        <div class="text-lg font-bold">{{ $follower->name }}</div>
-                        
-                    </div>
+                        <div class="flex justify-between items-center bg-gray-200 rounded-lg p-4">
+                            <a href="{{ route('users.profile', $follower) }}" class="font-bold py-1 px-3">
+                                {{ $follower->name }}
+                            </a>
+                            <x-follow-button :user="$follower" />
+                        </div>
                     @endforeach
 
                     {{ $followers->links() }}
                 @else
-                    <p>{{ $user->name }} does not have any followers.</p>
+                    <p class="text-center py-8">{{ $user->name }} does not have any followers.</p>
                 @endif
             </div>
             <div class="bg-white p-6 rounded-b-lg space-y-4 hidden" id="followingContainer">
                 @if ($following->count())
                     @foreach ($following as $followed)
-                        {{ $followed->name }}
+                        <div class="flex justify-between items-center bg-gray-200 rounded-lg p-4">
+                            <a href="{{ route('users.profile', $followed) }}" class="font-bold py-1 px-3">
+                                {{ $followed->name }}
+                            </a>
+                            <x-follow-button :user="$followed" />
+                        </div>
                     @endforeach
 
-                    {{ $followed->links() }}
+                    {{ $following->links() }}
                 @else
-                    <p>{{$user->name }} is not following anyone.</p>
+                    <p class="text-center py-8">{{$user->name }} is not following anyone.</p>
                 @endif
             </div>
         </div>

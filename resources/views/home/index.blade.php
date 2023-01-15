@@ -5,7 +5,7 @@
 
         <div class="w-full sm:w-8/12 bg-white p-6 rounded-lg">
             @auth
-                <form action="{{ route('posts') }}" method="post" class="">
+                <form action="{{ route('posts.store') }}" method="post" class="">
                     @csrf
                     <div class="mb-4">
                         <label for="body" class="sr-only">Body</label>

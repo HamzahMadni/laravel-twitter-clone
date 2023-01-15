@@ -11,7 +11,7 @@ class UserProfileController extends Controller
     {
         $followers = $user->followers()->paginate(10);
         $following = $user->following()->paginate(10);
-        $posts = $user->posts()->with(['user', 'likes'])->paginate(20);
+        $posts = $user->posts()->with(['user', 'likes'])->paginate(10);
 
         return view('users.profile.index', [
             'user' => $user,
