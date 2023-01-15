@@ -10,6 +10,10 @@ class UserFollowController extends Controller
 {
     public function store(User $user)
     {
+        if (auth()->id() === $user->id) {
+            return response('You cannot follow yourself...', 422);
+        }
+
         Follow::create([
             "follower_user_id" => auth()->id(),
             "followed_user_id" => $user->id,
