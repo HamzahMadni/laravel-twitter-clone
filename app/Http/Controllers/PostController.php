@@ -13,7 +13,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::latest()->with(['user', 'likes'])->paginate(20);
+        $posts = Post::whereIn('user_id', auth()->user()->following->pluck('id'))->latest()->with(['user', 'likes'])->paginate(20);
 
         return view('posts.index', [
             'posts' => $posts

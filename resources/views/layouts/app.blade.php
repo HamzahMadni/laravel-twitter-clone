@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        @vite('resources/css/app.css')
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
         <title>Twitter Clone</title>
     </head>
     <body class="bg-teal-700">
@@ -23,7 +23,7 @@
             <ul class="flex items-center">
                 @auth
                     <li>
-                        <a href="" class="p-3">{{ auth()->user()->name }}</a>
+                        <a href="{{ route('users.profile', auth()->user())}}" class="p-3">{{ auth()->user()->name }}</a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="p-3 inline">
