@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <div class="p-2 font-bold text-3xl">Twitter Clone</div>
-            <ul class="flex items-center">
+            <ul class="flex items-center space-x-2">
                 @auth
                     <li>
                         <a href="{{ route('users.profile', auth()->user())}}" class="p-3 rounded hover:bg-white/20 @if(request()->routeIs('users.profile')) {{'font-bold bg-white/10'}} @endif">{{ auth()->user()->name }}</a>
