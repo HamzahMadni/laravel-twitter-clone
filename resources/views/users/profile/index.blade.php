@@ -67,12 +67,7 @@
             <div class="bg-white p-6 rounded-b-lg space-y-4 hidden" id="followersContainer">
                 @if ($followers->count())
                     @foreach ($followers as $follower)
-                        <div class="flex justify-between items-center bg-gray-200 rounded-lg p-4">
-                            <a href="{{ route('users.profile', $follower) }}" class="font-bold py-1 px-3">
-                                {{ $follower->name }}
-                            </a>
-                            <x-follow-button :user="$follower" />
-                        </div>
+                        <x-user :user="$follower" />
                     @endforeach
 
                     {{ $followers->links() }}
@@ -83,12 +78,7 @@
             <div class="bg-white p-6 rounded-b-lg space-y-4 hidden" id="followingContainer">
                 @if ($following->count())
                     @foreach ($following as $followed)
-                        <div class="flex justify-between items-center bg-gray-200 rounded-lg p-4">
-                            <a href="{{ route('users.profile', $followed) }}" class="font-bold py-1 px-3">
-                                {{ $followed->name }}
-                            </a>
-                            <x-follow-button :user="$followed" />
-                        </div>
+                        <x-user :user="$followed" />
                     @endforeach
 
                     {{ $following->links() }}

@@ -1,5 +1,6 @@
 import './bootstrap';
 
+// Profile Tabs
 const tabContainer = document.getElementById('tabContainer');
 
 const postsTab = document.getElementById('posts');
@@ -25,10 +26,9 @@ const handleTabClicked = currentContainer => {
         // make folllowers container visible
         currentContainer.classList.toggle("hidden");
     }
-
 }
 
-tabContainer.addEventListener('click', event => {
+tabContainer?.addEventListener('click', event => {
     console.log('test')
     switch (event.target) {
         case postsTab:
