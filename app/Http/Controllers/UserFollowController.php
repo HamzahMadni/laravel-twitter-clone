@@ -24,6 +24,7 @@ class UserFollowController extends Controller
 
     public function destroy(User $user, Follow $follow)
     {
+        $this->authorize('delete', $follow);
         $follow->delete();
 
         return back();
