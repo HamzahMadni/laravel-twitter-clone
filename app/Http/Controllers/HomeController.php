@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
     public function __invoke()
     {
-        $posts = Post::whereIn('user_id', auth()->user()->following->pluck('id'))->latest()->with(['user', 'likes'])->paginate(10);
+        $posts = Post::whereIn('user_id', auth()->user()->following->pluck('id')->merge(auth()->id()))->latest()->with(['user', 'likes'])->paginate(10);
 
         return view('home.index', [
             'posts' => $posts
