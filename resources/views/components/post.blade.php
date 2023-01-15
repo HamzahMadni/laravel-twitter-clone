@@ -1,8 +1,8 @@
 @props(['post' => $post])
 
-<div class="bg-gray-200 rounded-md p-4 flex flex-col">
-    <div  class="flex items-center justify-between mb-2">
-        <div>
+<div class="bg-gray-200 rounded-md py-4 px-6 flex flex-col space-y-4">
+    <div  class="flex items-center justify-between">
+        <div class="flex justify-between items-center space-x-4">
             <a href="{{ route('users.profile', $post->user) }}" class="font-bold">{{ $post->user->name }}</a> 
             <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
         </div>
@@ -15,8 +15,7 @@
             </form>
         @endcan
     </div>
-    <p class="mb-2">{{ $post->body }}</p>
-
+    <p class="text-gray-700">{{ $post->body }}</p>
     <div class="flex items-center">
         @auth
             @if (!$post->likedBy(auth()->user()))
