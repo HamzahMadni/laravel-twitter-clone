@@ -25,7 +25,7 @@
             @endauth
         </div>
 
-        <div class="w-full sm:w-8/12 bg-white p-6 rounded-lg">
+        <div class="w-full sm:w-8/12 bg-white p-6 rounded-lg space-y-4">
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <x-post :post="$post" />
